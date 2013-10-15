@@ -1,0 +1,8 @@
+<ul>
+  <% _.each(people, function(person) { %>
+    <li class="well">
+      <h2><a href="<%= person.url %>"><%= person.name %></a></h2>
+      <p><%= person.bio %></p>
+    </li>
+  <% }); %>
+</ul>

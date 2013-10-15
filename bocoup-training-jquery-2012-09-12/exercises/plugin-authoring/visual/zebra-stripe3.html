@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bocoup jQuery Training Zebra Striping Plugin #3 Visual Test</title>
+  <script src="../libs/jquery/jquery.js"></script>
+  <script src="../src/zebra-stripe3.js"></script>
+  <script>
+  $(function() {
+
+    $("#container1").find("table, ul, ol").zebraStripe3();
+    $("#container2").find("table, ul, ol").zebraStripe3({className: "zebra2"});
+    $("#container3").find("table, ul, ol").zebraStripe3({className: "zebra2", which: "even"});
+
+  });
+  </script>
+  <link rel="stylesheet" href="../../../assets/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../assets/css/bocoup.css">
+  <style>
+    .container {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 1em;
+      margin-bottom: 2em;
+    }
+    .table, .lists {
+      width: 300px;
+      float: left;
+      margin: 0 1em 0 0;
+    }
+    .zebra {
+      background: #afa;
+    }
+    .zebra2 {
+      background: #faa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container1">
+    <h1>Bocoup jQuery Training Zebra Striping Plugin #3</h1><br>
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+      </tbody>
+    </table>
+    <div class="lists">
+      <ul>
+        <li class="zs0">item 1</li>
+        <li class="zs1">item 2</li>
+        <li class="zs0">item 3</li>
+        <li class="zs1">item 4</li>
+        <li class="zs0">item 5</li>
+      </ul>
+      <ol>
+        <li class="zs0">item 1</li>
+        <li class="zs1">item 2</li>
+        <li class="zs0">item 3</li>
+        <li class="zs1">item 4</li>
+        <li class="zs0">item 5</li>
+      </ol>
+    </div>
+  </div>
+  <div class="container" id="container2">
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+      </tbody>
+    </table>
+    <div class="lists">
+      <ul>
+        <li class="zs0">item 1</li>
+        <li class="zs1">item 2</li>
+        <li class="zs0">item 3</li>
+        <li class="zs1">item 4</li>
+        <li class="zs0">item 5</li>
+      </ul>
+      <ol>
+        <li class="zs0">item 1</li>
+        <li class="zs1">item 2</li>
+        <li class="zs0">item 3</li>
+        <li class="zs1">item 4</li>
+        <li class="zs0">item 5</li>
+      </ol>
+    </div>
+  </div>
+  <div class="container" id="container3">
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs1"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+        <tr class="zs0"><td>cell 1</td><td>cell 2</td><td>cell 3</td></tr>
+      </tbody>
+    </table>
+    <div class="lists">
+      <ul>
+        <li class="zs0">item 1</li>
+        <li class="zs1">item 2</li>
+        <li class="zs0">item 3</li>
+        <li class="zs1">item 4</li>
+        <li class="zs0">item 5</li>
+      </ul>
+      <ol>
+        <li class="zs0">item 1</li>
+        <li class="zs1">item 2</li>
+        <li class="zs0">item 3</li>
+        <li class="zs1">item 4</li>
+        <li class="zs0">item 5</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>

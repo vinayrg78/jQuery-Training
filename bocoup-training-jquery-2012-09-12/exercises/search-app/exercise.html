@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bocoup jQuery Training :: Exercise :: Search App</title>
+    <link rel="stylesheet" href="../../assets/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/bocoup.css">
+    <style>
+    #liked, #results {
+      list-style: none;
+      margin: 0 0 10px 0;
+    }
+    #results li + li {
+      padding: 10px 0;
+      border-top: 1px solid #eee;
+    }
+    #results .btn {
+      float: right;
+      margin-left: 10px;
+    }
+    </style>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="http://training.bocoup.com/">Bocoup jQuery Training :: Search App</a>
+        <div>
+          <ul class="nav">
+            <li class="active"><a href="../../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Searching should query the server and display results. <small>(exercise)</small></h1><br>
+    <div class="well">
+      <h4>Modify <code>exercise.js</code> to make the <a href="exercise.html">exercise page</a> work like the <a href="solution.html">solution page</a>.</h4><br>
+      <h5>Phase 1</h5>
+      <ul>
+        <li>When the form is submitted, send an Ajax GET request to <a href="/data/search.json?q=tom">/data/search.json</a> that includes a <code>q</code> parameter whose value is the search term.</li>
+        <li>Using Ajax, fetch the template at <a href="/templates/people-detailed.tmpl">/templates/people-detailed.tmpl</a> and use the <a href="http://underscorejs.org/">Underscore.js</a> <code>_.template()</code> method to render search results.</li>
+        <li>Display the message <code>No results found.</code> if no matching results were found.</li>
+      </ul>
+      <h5>Phase 2</h5>
+      <ul>
+        <li>When a search result "Remove" button is clicked, that search result should be removed from the list.</li>
+        <li>When a search result "Like" button is clicked, the name from that search result should be added to the "Liked" list and the "You haven't liked anything yet" message should be removed.</li>
+        <li>Subsequent searches should work as expected: "Remove" and "Like" buttons should continue to work, the "Liked" list should persist and old search results should be removed.</li>
+      </ul>
+      <h5>Phase 3</h5>
+      <ul>
+        <li>Display the message <code>Searching...</code> while a search is pending.</li>
+        <li>Avoid making a request for a search that is empty or that only contains spaces.</li>
+        <li>Prevent the user from submitting a new search while an existing search is in progress.</li>
+      </ul>
+      <p>If you need help, use the <a href="http://api.jquery.com/">jQuery API documentation</a>, <a href="http://underscorejs.org/">Underscore.js documentation</a>, <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference">MDN JavaScript Reference</a> and the browser's <a href="https://developers.google.com/chrome-developer-tools/docs/overview">developer tools</a>!</p>
+    </div>
+    <h2>Search App</h2>
+    <form id="searchForm" class="well form-search">
+      <input type="text" name="q" class="input-medium search-query" placeholder="Enter your search">
+      <input type="submit" class="btn" value="Search">
+    </form>
+    <div class="row">
+      <div class="span7">
+        <ul id="results">
+          <li class="no-results">There are no results yet.</li>
+        </ul>
+      </div>
+      <div class="span4 offset1">
+        <div class="well">
+          <h3>Liked</h3>
+          <ul id="liked">
+            <li class="no-results">You haven't liked anything yet.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/lib/jquery/jquery.js"></script>
+  <script src="../../assets/lib/underscore/underscore.js"></script>
+  <script src="../../assets/js/bocoup.js"></script>
+  <script src="../../assets/lib/Faker/Faker.js"></script>
+  <script src="../../assets/js/mocked-ajax.js"></script>
+  <script src="exercise.js"></script>
+</body>

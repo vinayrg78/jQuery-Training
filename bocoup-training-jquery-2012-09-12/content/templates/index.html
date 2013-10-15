@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bocoup jQuery Training :: Templates</title>
+  <link rel="stylesheet" href="../../assets/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/bocoup.css">
+  <style type="text/css">
+  #target ul {
+    list-style: none;
+    margin: 0;
+  }
+  li.well {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+  }
+  li h2 {
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 9px;
+  }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="http://training.bocoup.com/">Bocoup jQuery Training :: Templates</a>
+        <div>
+          <ul class="nav">
+            <li class="active"><a href="../../index.html">Home</a></li>
+          </ul>
+        </div>
+        <form class="buttons">
+          <button class="reset-target btn btn-inverse"><i class="icon-refresh icon-white"></i></button><button class="toggle-target btn btn-inverse" rel="#target-parent"><i class="icon-arrow-up icon-white"></i><i class="icon-arrow-down icon-white"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="main">
+    <div id="target-parent">
+      <h2>Result</h2>
+      <div id="target">
+        <div class="alert alert-info">Nothing yet!</div>
+      </div>
+    </div>
+    <div class="cm">
+      <h2>Please load <a href="notes.js">notes.js</a> in a text editor.</h2>
+    </div>
+  </div>
+  <script src="../../assets/lib/jquery/jquery.js"></script>
+  <script src="../../assets/lib/underscore/underscore.js"></script>
+  <script src="../../assets/js/bocoup.js"></script>
+  <script src="../../assets/js/mocked-ajax.js"></script>
+
+  <script type="text/template" id="tmpl-person">
+    <ul>
+      <% _.each(people, function(person) { %>
+        <li class="well">
+          <h2><a href="<%= person.url %>"><%= person.name %></a></h2>
+          <p><%= person.bio %></p>
+        </li>
+      <% }); %>
+    </ul>
+  </script>
+
+</body>

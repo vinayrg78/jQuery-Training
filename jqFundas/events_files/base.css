@@ -1,0 +1,214 @@
+* { box-sizing: border-box; }
+.navbar .brand {
+  margin-left: 0;
+  padding-left: 0;
+}
+.navbar-inner {
+  z-index: 13;
+  position: relative;
+}
+.row {
+  margin-top: 60px;
+}
+.editor {
+  border: 1px solid #eee;
+  margin: 0 0 10px 0;
+}
+.CodeMirror pre {
+  line-height: 1.5em;
+  letter-spacing: 1.5;
+}
+.editor-buttons {
+  background-color: #f7f7f7;
+  text-align: right;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+.editor-buttons i {
+  margin-left: 5px;
+  cursor: pointer;
+}
+.editor-info {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 80%;
+}
+.editor-info .caution {
+  color: red;
+  padding-right: 5px;
+}
+.CodeMirror {
+  font-family: Monaco, Menlo,"Andale Mono","lucida console","Courier New",monospace !important;
+  font-size: 90%;
+}
+.editor .CodeMirror-scroll {
+  height: 250px;
+}
+.editor-container {
+  border: 1px solid #eee;
+  margin: 20px 0;
+}
+.editor-container .CodeMirror-scroll {
+  height: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.btn + .btn {
+  margin: 0 10px;
+}
+.CodeMirror .cm-s-default span.cm-comment {
+  color: #888;
+}
+#main, .sandbox-visible #main, #sandbox, .sandbox-visible #sandbox {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+#main {
+  margin-top: 80px;
+}
+#sandbox {
+  position: fixed;
+  padding: 20px 0;
+  z-index: 12;
+  margin-top: -400px;
+}
+.sandbox-visible #main {
+  margin-top: 460px;
+}
+.sandbox-visible #sandbox {
+  margin-top: 20px;
+}
+#results, #editor {
+  background-color: #fff;
+}
+#sandbox:before {
+  position: absolute;
+  z-index: -1;
+  width: 3000px;
+  height: 365px;
+  background: #eaeaea;
+  left: -500px;
+  top: -20px;
+}
+footer {
+  height: 50px;
+  font-size: 11px;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: 10px 50%;
+  background-image: url('../img/bob-bust.png');
+  padding-left: 50px;
+  padding-top: 18px;
+}
+footer p {
+  margin-bottom: 5px;
+}
+#links {
+  padding: 8px 0;
+}
+.centered {
+  text-align: center;
+}
+.alert {
+  margin: 20px 0;
+}
+.alert a {
+  text-decoration: underline;
+}
+.home-page-header {
+  padding-top: 0;
+  margin-top: 0;
+}
+.home-page-header h1 {
+  margin-top: 0;
+}
+@media (max-width: 979px){
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed;
+  }
+  .navbar .container {
+    width: 724px;
+    padding: 0;
+  }
+}
+@media (max-width: 979px) and (min-width: 768px) {
+  .span4 {
+    width: 287px;
+  }
+  .span8 {
+    width: 406px;
+  }
+}
+@media (max-width: 767px) {
+  [class*="span"], .row-fluid [class*="span"] {
+    width: none;
+  }
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    margin-left: 0;
+    }
+  .navbar .navbar-inner {
+    padding-right: 35px;
+  }
+  .navbar .container {
+    width: 100%;
+  }
+  #sandbox {
+    width: 100%;
+    padding: 0 20px 0 20px;
+   }
+  .sandbox-visible #main {
+    margin-top: 420px;
+  }
+  #sandbox .span8 {
+    width: 50%;
+    float: left;
+  }
+  #sandbox .span4 {
+    float: left;
+  }
+  #sandbox::before {
+    height: 325px;
+  }
+}
+@media (max-width: 637px) {
+  .navbar .nav {
+    margin: 0;
+  }
+  .btn-primary {
+    font-size: 12px;
+    padding: 4px 4px;
+  }
+}
+@media (max-width: 633px) {
+  #sandbox .span8 {
+    width: 47%;
+    float: left;
+  }
+}
+@media (max-width: 600px) {
+  .btn-primary, #sandbox {
+    display: none;
+  }
+  .sandbox-visible #main {
+    margin-top: 80px;
+  }
+}
+.results-container {
+  height: 100%;
+  width: 100%;
+}
+#sandbox .results-container {
+  height: 283px;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+}
+#results .results-container {
+  padding: 10px;
+  border: 1px solid #eee;
+}

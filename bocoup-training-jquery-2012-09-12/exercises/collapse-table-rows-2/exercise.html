@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bocoup jQuery Training :: Collapse Table Rows 2</title>
+  <link rel="stylesheet" href="../../assets/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/bocoup.css">
+  <style type="text/css">
+  html.js thead {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  th {
+    color: #000;
+    background-color: #ccc !important;
+    font-weight: 700;
+  }
+  th i {
+    float: right;
+  }
+  th, td {
+    width: 50%;
+  }
+  html.js td {
+    padding: 0;
+  }
+  html.js td > div {
+    margin: 8px;
+  }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="http://training.bocoup.com/">Bocoup jQuery Training :: Collapse Table Rows 2</a>
+        <div>
+          <ul class="nav">
+            <li class="active"><a href="../../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="main">
+    <h1>Clicking a table header should collapse the rows after it. <small>(exercise)</small></h1><br>
+    <div class="well">
+      <h4>Modify <code>exercise.js</code> to make the <a href="exercise.html">exercise page</a> look like the <a href="solution.html">solution page</a>.</h4><br>
+      <ul>
+        <li>The tables should behave appropriately whether or not JavaScript is enabled.</li>
+        <li>Utilize already-existing CSS rules to enable a hand cursor on table headers.</li>
+        <li>Add <a href="http://twitter.github.com/bootstrap/base-css.html#icons">an icon</a> to each table header using this HTML: <code>&lt;i class="icon-minus"&gt;&lt;/i&gt;</code>.</li>
+        <li>Wrap the inside of each table cell with a <code>div</code> element, since table cells and rows can't be animated.</li>
+        <li>When a table header is clicked,</li>
+        <ul>
+          <li>any existing animation should be stopped.</li>
+          <li>the wrapper <code>div</code> elements should be animated with <code>.slideToggle()</code>.</li>
+          <li>the <code>tbody</code> should be hidden in the animation callback function, so that extraneous borders aren't visible.</li>
+          <li>that header's icon should toggle between <code>icon-minus</code> and <code>icon-plus</code> appropriately.</li>
+        </ul>
+      </ul>
+      <p>If you need help, use the <a href="http://api.jquery.com/">jQuery API documentation</a>, <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference">MDN JavaScript Reference</a> and the browser's <a href="https://developers.google.com/chrome-developer-tools/docs/overview">developer tools</a>!</p>
+    </div>
+    <div id="content">
+      <h2>A table</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">This is a sample header</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>One table cell.</td>
+            <td>Another table cell.</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th colspan="2">This is another sample header</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="2">This table cell is chock full of content!</td>
+          </tr>
+          <tr>
+            <td colspan="2">Another table cell with lots of good content!</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>Another table</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">This is a sample header</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Some more table cells.</td>
+            <td>Yep, another table cell.</td>
+          </tr>
+          <tr>
+            <td>Table cells are super fun!</td>
+            <td>Don't we love table cells?</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th colspan="2">Yet another sample header</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="2">
+              <em>This table cell has lots of content!<br>
+              This table cell has lots of content!<br>
+              Take it to the bridge!!<br>
+              This table cell has lots of content! (reprise)</em>
+            </td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th colspan="2">The last header, I promise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="2">This table cell is chock full of content!</td>
+          </tr>
+          <tr>
+            <td colspan="2">Another table cell with lots of good content!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="lipsum">
+      <h3>Placeholder content</h3>
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar ultricies turpis, at adipiscing mauris ultrices ac. Suspendisse non tortor ac est adipiscing laoreet. Mauris sagittis, leo non mattis suscipit, neque massa dignissim ante, vitae vestibulum mi lacus quis elit. Suspendisse vulputate lorem a purus condimentum euismod. Nunc urna tortor, lacinia et venenatis ac, consequat nec elit. Donec lectus nibh, ullamcorper et hendrerit ut, laoreet in lacus. Suspendisse enim sem, feugiat vitae porta in, condimentum sit amet mi. Ut vitae metus libero.
+      </p>
+      <p>
+      Integer eu urna turpis, sit amet varius orci. Aliquam euismod, quam ac ornare posuere, odio erat faucibus dui, ac rutrum mauris eros quis velit. Integer pulvinar aliquet fringilla. Donec ultricies convallis eros, quis cursus diam tempus quis. Donec in magna id leo sagittis sollicitudin vel eget nibh. Nullam et felis ut nulla feugiat sagittis. Integer pellentesque massa eget magna aliquet vitae tincidunt nibh dignissim. Nam rhoncus nulla eu dolor accumsan sit amet tristique nisi dignissim. Pellentesque porttitor libero rutrum massa posuere tincidunt. Nulla ornare bibendum nunc quis vestibulum. Pellentesque metus neque, egestas nec convallis ut, adipiscing non lorem. Vestibulum purus justo, vehicula at tincidunt in, ornare tempus ante. Etiam scelerisque, erat ut mattis placerat, est erat consequat elit, at fermentum urna odio in nisl. Ut vehicula lorem nec purus ornare nec tempus dui ultricies. Praesent sit amet elit ut velit bibendum tincidunt sit amet nec ipsum. Duis elit mauris, sagittis a eleifend vel, scelerisque quis orci.
+      </p>
+      <p>
+      Ut risus mi, pellentesque vel tincidunt a, rutrum sit amet augue. Donec pharetra turpis at orci venenatis vestibulum. Nunc lacinia nisl nec ante tempus sit amet eleifend magna fermentum. In porta ornare bibendum. Duis faucibus orci sit amet dui dictum vitae consectetur dui pretium. In porta velit id tortor accumsan nec mollis urna vulputate. Vivamus malesuada auctor felis in consectetur. Nunc a felis ipsum, at ultricies metus. Nam vehicula sem nec tellus interdum facilisis. Maecenas cursus purus nisi, vitae tristique libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      </p>
+      <p>
+      Vestibulum vitae tellus elit. Etiam nulla nisl, vehicula vel hendrerit in, vestibulum eu est. Vivamus sodales euismod turpis, sit amet volutpat tortor mattis sed. Proin egestas accumsan massa in scelerisque. Aliquam quis ante ac magna egestas venenatis. Pellentesque sit amet tincidunt diam. Curabitur sed dolor dolor. Fusce quis tempus massa. Donec consectetur adipiscing nunc nec porta. Vestibulum tempor tempus molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean suscipit lobortis ligula, facilisis convallis lectus iaculis ut. Phasellus a justo vitae ante aliquam molestie vel sit amet diam. Aliquam erat volutpat. Nulla non neque risus, ut consequat justo.
+      </p>
+      <p>
+      Integer tincidunt ullamcorper odio at pellentesque. Quisque auctor ultricies eros, a tempus nisi volutpat non. Mauris dapibus nibh id purus pharetra varius. Duis imperdiet, lectus et congue ultricies, ipsum nulla commodo quam, quis egestas tortor velit ut odio. Donec iaculis sapien at lectus faucibus mollis. Curabitur tincidunt tempor dignissim. Phasellus lobortis fermentum justo, iaculis posuere lorem vestibulum non. In sagittis erat sit amet erat volutpat vel adipiscing est tempor. Sed sit amet lectus erat. Nunc velit mi, rhoncus vel bibendum sit amet, mattis ac tellus. Vivamus mi metus, dictum sit amet viverra dapibus, commodo sit amet quam. Sed ipsum nibh, ornare eu tempor eu, interdum sit amet velit.
+      </p>
+    </div>
+  </div>
+  <script src="../../assets/lib/jquery/jquery.js"></script>
+  <script src="exercise.js"></script>
+</body>

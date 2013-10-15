@@ -1,0 +1,23 @@
+{
+  "name": "zebra-stripe",
+  "title": "Bocoup jQuery Training Zebra Striping Plugin",
+  "description": "The best jQuery zebra striping plugin ever.",
+  "version": "0.1.0",
+  "homepage": "http://training.bocoup.com/",
+  "author": {
+    "name": "\"Cowboy\" Ben Alman",
+    "url": "http://benalman.com/"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    },
+    {
+      "type": "GPL"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">= 1.6"
+  },
+  "keywords": []
+}

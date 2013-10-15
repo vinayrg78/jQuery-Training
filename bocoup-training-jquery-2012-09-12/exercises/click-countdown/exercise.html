@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bocoup jQuery Training :: Click Countdown</title>
+  <link rel="stylesheet" href="../../assets/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/bocoup.css">
+  <style type="text/css">
+  #content button {
+    width: 12.5em;
+  }
+  .btn + .btn {
+    margin: 0 0 0 0.5em;
+  }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="http://training.bocoup.com/">Bocoup jQuery Training :: Click Countdown</a>
+        <div>
+          <ul class="nav">
+            <li class="active"><a href="../../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="main">
+    <h1>These buttons should count down when clicked. <small>(exercise)</small></h1><br>
+    <div class="well">
+      <h4>Modify <code>exercise.js</code> to make the <a href="exercise.html">exercise page</a> look like the <a href="solution.html">solution page</a>.</h4><br>
+      <ul>
+        <li>Prevent the form from being submitted!</li>
+        <li>Decrease the number when a button is clicked.</li>
+        <li>Allow each button to be clicked no more than the specified number of times.</li>
+        <li>Unbind the event handler and <em>disable</em> the button when the button should no longer be clickable.</li>
+        <li>Pluralize the word <em>time</em> accordingly: singular for <code>1</code>, plural for <code>0</code> and other numbers.</li>
+      </ul>
+      <p>If you need help, use the <a href="http://api.jquery.com/">jQuery API documentation</a>, <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference">MDN JavaScript Reference</a> and the browser's <a href="https://developers.google.com/chrome-developer-tools/docs/overview">developer tools</a>!</p>
+    </div>
+    <div id="content">
+      <h2>Some buttons in a form</h2>
+      <form action="">
+        <button name="a" value="1" class="btn">Click me <span class="number">2</span> more time<span class="plural">s</span>!</button>
+        <button name="b" value="1" class="btn">Click me <span class="number">3</span> more time<span class="plural">s</span>!</button>
+        <button name="c" value="1" class="btn">Click me <span class="number">1</span> more time<span class="plural"></span>!</button>
+      </form>
+      <h2>More buttons in another form</h2>
+      <form action="">
+        <button name="d" value="1" class="btn">Click me <span class="number">2</span> more time<span class="plural">s</span>!</button>
+        <button name="e" value="1" class="btn">Click me <span class="number">5</span> more time<span class="plural">s</span>!</button>
+        <button name="f" value="1" class="btn">Click me <span class="number">4</span> more time<span class="plural">s</span>!</button>
+        <button name="g" value="1" class="btn">Click me <span class="number">1</span> more time<span class="plural"></span>!</button>
+        <button name="h" value="1" class="btn">Click me <span class="number">3</span> more time<span class="plural">s</span>!</button>
+      </form>
+    </div>
+  </div>
+  <script src="../../assets/lib/jquery/jquery.js"></script>
+  <script src="exercise.js"></script>
+</body>

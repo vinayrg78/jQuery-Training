@@ -1,0 +1,1 @@
+var log=window.log=function(e){var t=document.createElement("p");t.innerHTML=e,document.body.appendChild(t)}

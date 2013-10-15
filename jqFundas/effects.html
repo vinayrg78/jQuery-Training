@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>jQuery Fundamentals :: Animating Your Pages with jQuery</title><link rel="stylesheet" href="effects_files/codemirror.css"><link rel="shortcut icon" href="http://jqfundamentals.com/favicon.ico"><link rel="stylesheet" href="effects_files/bootstrap.css"><link rel="stylesheet" href="effects_files/base.css"><script src="effects_files/ga.js" async="" type="text/javascript"></script><script src="effects_files/main.js" data-requiremodule="main" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="effects_files/chapter.js" data-requiremodule="js/chapter" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script></head><body><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><a href="http://jqfundamentals.com/" class="brand">jQuery Fundamentals</a><ul class="nav"><li><a href="http://jqfundamentals.com/">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Contents »</a><ul class="dropdown-menu"><li><a href="http://jqfundamentals.com/chapter/javascript-basics">JavaScript Basics</a></li><li><a href="http://jqfundamentals.com/chapter/jquery-basics">jQuery Basics</a></li><li><a href="http://jqfundamentals.com/chapter/traversing-manipulating">Traversing &amp; Manipulating</a></li><li><a href="http://jqfundamentals.com/chapter/events">Events &amp; Event Delegation</a></li><li><a href="http://jqfundamentals.com/chapter/effects">Effects</a></li><li><a href="http://jqfundamentals.com/chapter/ajax-deferreds">AJAX &amp; Deferreds</a></li></ul></li><li><a href="mailto:jqf@bocoup.com">Feedback</a></li></ul><div class="pull-right"><button id="editor-btn" class="btn btn-primary">Show Editor</button></div></div></div><div class="container"><div id="sandbox" class="row"><div class="span8"><div id="editor"><div class="editor"><div class="editor-buttons"><i title="Execute Code" class="icon-play"></i><i title="Reset to original" class="icon-repeat"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 250px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre> </pre></div></div></div></div></div></div></div></div></div></div><div id="results" class="span4"><div class="results-container"><iframe src="effects_files/effects.html" frameborder="0"></iframe></div></div></div></div></div><div class="container"><div id="main" data-chapter="/sandbox/effects"><div class="page-header"><h1>Animating Your Pages with jQuery</h1></div><div class="row"><div class="span4"><div id="links" class="well"><ul class="nav nav-list"><li class="nav-header">Additional Resources</li><li><a href="http://api.jquery.com/category/effects/">Effects Documentation</a></li></ul></div><div class="well bocoup-ad"><p class="centered"><a href="http://training.bocoup.com/"><img src="effects_files/henrietta-and-jude-small.png"></a></p><p>jQuery Fundamentals is brought to you by
+<a href="http://training.bocoup.com/?utm_source=jqf&amp;utm_medium=promo_block&amp;utm_campaign=jqf_app"><strong>Bocoup Training</strong></a>.</p><p><strong>Upcoming classes:</strong><br>  
+<a href="http://training.bocoup.com/?utm_source=jqf&amp;utm_medium=promo_block&amp;utm_content=comp_jquery&amp;utm_campaign=jqf_app">Comprehensive jQuery</a><br>
+<a href="http://training.bocoup.com/?utm_source=jqf&amp;utm_medium=promo_block&amp;utm_content=js_foundations&amp;utm_campaign=jqf_app">Foundations of Programming with JS</a><br>
+<a href="http://training.bocoup.com/?utm_source=jqf&amp;utm_medium=promo_block&amp;utm_content=js_best&amp;utm_campaign=jqf_app">JavaScript Best Practices</a></p></div></div><div class="span8"><p>jQuery makes it trivial to add simple effects to your page. Effects can use the
+built-in settings or provide a customized duration. You can also create custom
+animations of arbitrary CSS properties.
+
+</p>
+<p>See the <a href="http://api.jquery.com/category/effects/">effects documentation</a> for
+complete details on jQuery effects.
+
+</p>
+<div class="alert alert-info">
+  <strong>An important note about animations:</strong> In modern 
+browsers, and especially on mobile devices, it is often much more 
+efficient to achieve animations using CSS rather than JavaScript. The 
+details of doing this are beyond the scope of this guide, but if you are
+ only targeting mobile devices or browsers that support CSS animations, 
+then you should use CSS for animations where possible. You may also want
+ to consider setting <code>jQuery.fx.off</code> to true on low-resource 
+devices; doing so will cause animation methods to immediately set 
+elements to the desired state, rather than animating to that state.
+</div>
+
+<h2>Built-in effects</h2>
+<p>Frequently used effects are built into jQuery as methods that you can call on
+any jQuery object:
+
+</p>
+<ul>
+<li><strong><code>.show()</code></strong> Show the selected elements.</li>
+<li><strong><code>.hide()</code></strong> Hide the selected elements.</li>
+<li><strong><code>.fadeIn()</code></strong> Animate the opacity of the selected elements to 100%.</li>
+<li><strong><code>.fadeOut()</code></strong> Animate the opacity of the selected elements to 0%.</li>
+<li><strong><code>.slideDown()</code></strong> Display the selected elements with a vertical sliding
+motion.</li>
+<li><strong><code>.slideUp()</code></strong> Hide the selected elements with a vertical sliding motion.</li>
+<li><strong><code>.slideToggle()</code></strong> Show or hide the selected elements with a vertical
+sliding motion, depending on whether the elements are currently visible.</li>
+</ul>
+<p>Once you've made a selection, it's simple to apply an effect to that selection.
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 29px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'.hidden'</span> ).<span class="cm-property">show</span>();</pre></div></div></div></div></div></div></div></div>
+<p>You can also specify the duration of built-in effects. There are two ways to do
+this: you can specify a time in milliseconds ...
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 29px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'.hidden'</span> ).<span class="cm-property">show</span>( <span class="cm-number">300</span> );</pre></div></div></div></div></div></div></div></div>
+<p>... or use one of the pre-defined speeds:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 29px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'.hidden'</span> ).<span class="cm-property">show</span>( <span class="cm-string">'slow'</span> );</pre></div></div></div></div></div></div></div></div>
+<p>The predefined speeds are specified in the <code>jQuery.fx.speeds</code> object; you can
+modify this object to override the defaults, or extend it with new names:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03345px; left: 32.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 255.7px;"><div style="position: relative; top: 0px;"><div style="height: 256px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre><pre>7</pre><pre>8</pre><pre>9</pre><pre>10</pre><pre>11</pre><pre>12</pre><pre>13</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 27px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-comment">// re-set an existing predefined speed</span></pre><pre><span class="cm-variable">jQuery</span>.<span class="cm-property">fx</span>.<span class="cm-property">speeds</span>.<span class="cm-property">fast</span> = <span class="cm-number">50</span>;</pre><pre> </pre><pre><span class="cm-comment">// create a new pre-defined speed</span></pre><pre><span class="cm-variable">jQuery</span>.<span class="cm-property">fx</span>.<span class="cm-property">speeds</span>.<span class="cm-property">turtle</span> = <span class="cm-number">3000</span>;</pre><pre> </pre><pre><span class="cm-comment">// Since we've re-set the 'fast' speed, this will now animate over the</span></pre><pre><span class="cm-comment">// course of 50 milliseconds</span></pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'.hidden'</span> ).<span class="cm-property">hide</span>( <span class="cm-string">'fast'</span> );</pre><pre> </pre><pre><span class="cm-comment">// After they are created, we can use custom speeds just as we use the</span></pre><pre><span class="cm-comment">// built-in speeds</span></pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'.other-hidden'</span> ).<span class="cm-property">show</span>( <span class="cm-string">'turtle'</span> );</pre></div></div></div></div></div></div></div></div>
+<p>Often, you'll want to do something once an animation is done &#8212; if you
+ try to do it before the animation completes, it may affect the quality 
+of the animation, or it may remove elments that are part of the 
+animation. You can provide a callback function to the animation methods 
+if you want to specify what should happen when the effect is complete. 
+Inside the callback, <code>this</code> refers to the raw DOM element 
+that the effect was applied to. Just like with event callbacks, we can 
+turn it into a jQuery object by passing it to the <code>$()</code> function: <code>$( this )</code>.
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 66.7px;"><div style="position: relative; top: 0px;"><div style="height: 67px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'p.old'</span> ).<span class="cm-property">fadeOut</span>( <span class="cm-number">300</span>, <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">$</span>( <span class="cm-variable-2">this</span> ).<span class="cm-property">remove</span>();</pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<p>Note that if your selection doesn't contain any elements, then your callback
+will never run! If you need your callback to run regardless of whether there
+are elements in your selection, you can create a function and use it for both cases:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 32.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 350.2px;"><div style="position: relative; top: 0px;"><div style="height: 350px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre><pre>7</pre><pre>8</pre><pre>9</pre><pre>10</pre><pre>11</pre><pre>12</pre><pre>13</pre><pre>14</pre><pre>15</pre><pre>16</pre><pre>17</pre><pre>18</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 27px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-keyword">var</span> <span class="cm-variable">oldElements</span> = <span class="cm-variable">$</span>( <span class="cm-string">'p.old'</span> );</pre><pre><span class="cm-keyword">var</span> <span class="cm-variable">thingToAnimate</span> = <span class="cm-variable">$</span>( <span class="cm-string">'#nonexistent'</span> );</pre><pre> </pre><pre><span class="cm-comment">// This function will be a "callback" to the "show" method when there are</span></pre><pre><span class="cm-comment">// elements to show. Otherwise, we will simply call it immediately</span></pre><pre><span class="cm-keyword">var</span> <span class="cm-variable">removeOldElements</span> = <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">oldElements</span>.<span class="cm-property">remove</span>();</pre><pre>};</pre><pre> </pre><pre><span class="cm-keyword">if</span> ( <span class="cm-variable">thingToAnimate</span>.<span class="cm-property">length</span> ) {</pre><pre> </pre><pre>  <span class="cm-comment">// When passed as a callback to "show", the function will be invoked</span></pre><pre>  <span class="cm-comment">// when the animation is complete</span></pre><pre>  <span class="cm-variable">thingToAnimate</span>.<span class="cm-property">show</span>( <span class="cm-string">'slow'</span>, <span class="cm-variable">removeOldElements</span> );</pre><pre> </pre><pre>} <span class="cm-keyword">else</span> {</pre><pre>  <span class="cm-variable">removeOldElements</span>();</pre><pre>}</pre></div></div></div></div></div></div></div></div>
+<h2>Custom effects with .animate()</h2>
+<p>If the built-in animations don't suit your needs, you can use <code>.animate()</code> to
+create custom animations of many CSS properties. (Notably, you cannot animate the color property, but there is a
+<a href="https://github.com/jquery/jquery-color/">plugin</a> that makes it possible).
+
+</p>
+<p>The <code>.animate()</code> method takes up to three arguments:
+
+</p>
+<ul>
+<li>an object defining the properties to be animated</li>
+<li>the duration of the animation, in milliseconds</li>
+<li>a callback function that will be called when the animation is complete</li>
+</ul>
+<p>The <code>.animate()</code> method can animate to a specified final value, or it can
+increment an existing value.
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.0332px; left: 32.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 199px;"><div style="position: relative; top: 0px;"><div style="height: 199px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre><pre>7</pre><pre>8</pre><pre>9</pre><pre>10</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 27px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'.funtimes'</span> ).<span class="cm-property">animate</span>({</pre><pre>    <span class="cm-property">left</span>: <span class="cm-string">'+=50'</span>, <span class="cm-comment">// increase by 50</span></pre><pre>    <span class="cm-property">opacity</span>: <span class="cm-number">0.25</span>,</pre><pre>    <span class="cm-property">fontSize</span>: <span class="cm-string">'12px'</span></pre><pre>  },</pre><pre>  <span class="cm-number">300</span>,</pre><pre>  <span class="cm-keyword">function</span>() {</pre><pre>    <span class="cm-comment">// executes when the animation is done</span></pre><pre>  }</pre><pre>);</pre></div></div></div></div></div></div></div></div>
+<div class="alert alert-info">Note that if you want to animate a CSS property whose name includes a hyphen, you will need to use a "<a href="http://en.wikipedia.org/wiki/CamelCase">camel case</a>" version of the property name if you do not quote the property name. For example, the <code>font-size</code> property must be referred to as <code>fontSize</code>.</div>
+
+<h2>Managing animations</h2>
+<p>jQuery provides two important methods for managing animations.
+
+</p>
+<ul>
+<li><code>.stop()</code> will stop currently running animations on the selected elements.</li>
+<li><code>.delay()</code> will pause before the execution of the next animation method. Pass
+it the number of milliseconds you want to wait.</li>
+</ul>
+<p>jQuery also provides methods for managing the effects queue, creating custom
+queues, and adding custom functions to these queues. These methods are beyond
+the scope of this guide, but <a href="http://api.jquery.com/category/effects/">you can read about them
+here</a>.
+</p>
+<ul class="pager"><li class="previous"><a href="http://jqfundamentals.com/chapter/events">&#8592;&nbsp;Previous:&nbsp;Events &amp; Event Delegation</a></li><li class="next"><a href="http://jqfundamentals.com/chapter/ajax-deferreds">Next:&nbsp;AJAX &amp; Deferreds&nbsp;&#8594;</a></li></ul></div></div></div><footer><p>Copyright © 2012 <a href="http://bocoup.com/">Bocoup</a> &#8226; <a href="http://jqfundamentals.com/legacy">View the original book</a> &#8226; <a href="mailto:jqf@bocoup.com">Send feedback</a></p></footer></div><script src="effects_files/require.js" data-main="/public/v1348938024379/main"></script><script>require([ 'js/chapter' ]);
+</script><script>var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-1464992-55']); _gaq.push(['_trackPageview']);
+
+(function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script></body></html>

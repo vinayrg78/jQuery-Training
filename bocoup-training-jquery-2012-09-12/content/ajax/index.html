@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bocoup jQuery Training :: Ajax</title>
+  <link rel="stylesheet" href="../../assets/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/bocoup.css">
+</head>
+<body class="target-hidden">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="http://training.bocoup.com/">Bocoup jQuery Training :: Ajax</a>
+        <div>
+          <ul class="nav">
+            <li class="active"><a href="../../index.html">Home</a></li>
+          </ul>
+        </div>
+        <form class="buttons">
+          <button class="reset-target btn btn-inverse" rel="#target-parent"><i class="icon-refresh icon-white"></i></button><button class="toggle-target btn btn-inverse" rel="#target-parent"><i class="icon-arrow-up icon-white"></i><i class="icon-arrow-down icon-white"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="main" style="position: relative;">
+    <div id="target-parent" class="row">
+      <div class="span8">
+        <h2>Result</h2>
+        <div id="target">
+          <div class="alert alert-info">Nothing yet!</div>
+        </div>
+      </div>
+      <div class="span4">
+        <h2>A form</h2>
+        <form action="/data/save" method="POST" class="well form-inline" style="padding: 10px;">
+          <select name="multi" class="input-small" multiple style="float: right; height: 4.5em;">
+            <option selected>Bocoup</option>
+            <option>jQuery</option>
+            <option selected>JavaScript</option>
+          </select>
+          <input type="text" name="first" class="input-mini" placeholder="First">
+          <input type="text" name="last" class="input-mini" placeholder="Last"><br>
+          <label class="checkbox">
+            <input type="checkbox" name="mycheck" value="first-checkbox" checked>
+            First
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="mycheck" value="second-checkbox" checked>
+            Second
+          </label><br>
+          <label class="radio">
+            <input type="radio" name="myradio" value="first-button">
+            First
+          </label>
+          <label class="radio">
+            <input type="radio" name="myradio" value="second-button" checked>
+            Second
+          </label><br>
+          <select name="myselect" class="input-small" style="clear: both;">
+            <option>Bocoup</option>
+            <option selected>jQuery</option>
+            <option>JavaScript</option>
+          </select>
+          <input type="submit" value="Submit!" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+    <div class="cm">
+      <h2>Please load <a href="notes.js">notes.js</a> in a text editor.</h2>
+    </div>
+  </div>
+  <script src="../../assets/lib/jquery/jquery.js"></script>
+  <script src="../../assets/js/bocoup.js"></script>
+  <script src="../../assets/js/mocked-ajax.js"></script>
+</body>

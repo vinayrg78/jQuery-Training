@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>jQuery Fundamentals :: Events and Event Delegation</title><link rel="stylesheet" href="events_files/codemirror.css"><link rel="shortcut icon" href="http://jqfundamentals.com/favicon.ico"><link rel="stylesheet" href="events_files/bootstrap.css"><link rel="stylesheet" href="events_files/base.css"><script src="events_files/ga.js" async="" type="text/javascript"></script><script src="events_files/main.js" data-requiremodule="main" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="events_files/chapter.js" data-requiremodule="js/chapter" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script></head><body><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><a href="http://jqfundamentals.com/" class="brand">jQuery Fundamentals</a><ul class="nav"><li><a href="http://jqfundamentals.com/">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Contents »</a><ul class="dropdown-menu"><li><a href="http://jqfundamentals.com/chapter/javascript-basics">JavaScript Basics</a></li><li><a href="http://jqfundamentals.com/chapter/jquery-basics">jQuery Basics</a></li><li><a href="http://jqfundamentals.com/chapter/traversing-manipulating">Traversing &amp; Manipulating</a></li><li><a href="http://jqfundamentals.com/chapter/events">Events &amp; Event Delegation</a></li><li><a href="http://jqfundamentals.com/chapter/effects">Effects</a></li><li><a href="http://jqfundamentals.com/chapter/ajax-deferreds">AJAX &amp; Deferreds</a></li></ul></li><li><a href="mailto:jqf@bocoup.com">Feedback</a></li></ul><div class="pull-right"><button id="editor-btn" class="btn btn-primary">Show Editor</button></div></div></div><div class="container"><div id="sandbox" class="row"><div class="span8"><div id="editor"><div class="editor"><div class="editor-buttons"><i title="Execute Code" class="icon-play"></i><i title="Reset to original" class="icon-repeat"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 250px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre> </pre></div></div></div></div></div></div></div></div></div></div><div id="results" class="span4"><div class="results-container"><iframe src="events_files/events.html" frameborder="0"></iframe></div></div></div></div></div><div class="container"><div id="main" data-chapter="/sandbox/events"><div class="page-header"><h1>Events and Event Delegation</h1></div><div class="row"><div class="span4"><div id="links" class="well"><ul class="nav nav-list"><li class="nav-header">Additional Resources</li><li><a href="http://api.jquery.com/category/events/">jQuery Events Documentation</a></li></ul></div><div class="well bocoup-ad"><p class="centered"><a href="http://training.bocoup.com/"><img src="events_files/henrietta-and-jude-small.png"></a></p><p>jQuery Fundamentals is brought to you by
+<a href="http://training.bocoup.com/?utm_source=jqf&amp;utm_medium=promo_block&amp;utm_campaign=jqf_app"><strong>Bocoup Training</strong></a>.</p><p><strong>Upcoming classes:</strong><br>  
+<a href="http://training.bocoup.com/?utm_source=jqf&amp;utm_medium=promo_block&amp;utm_content=comp_jquery&amp;utm_campaign=jqf_app">Comprehensive jQuery</a><br>
+<a href="http://training.bocoup.com/?utm_source=jqf&amp;utm_medium=promo_block&amp;utm_content=js_foundations&amp;utm_campaign=jqf_app">Foundations of Programming with JS</a><br>
+<a href="http://training.bocoup.com/?utm_source=jqf&amp;utm_medium=promo_block&amp;utm_content=js_best&amp;utm_campaign=jqf_app">JavaScript Best Practices</a></p></div></div><div class="span8"><p>jQuery
+ makes it easy to respond to user interaction with a web page. This 
+means that you can write code that runs when a user clicks on a certain 
+part of the page, or when she moves her mouse over a form element. For 
+example, this
+code listens for a user to click on any <code>li</code> element in the page:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 66.7px;"><div style="position: relative; top: 0px;"><div style="height: 67px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">click</span>(<span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-string">'clicked'</span>, <span class="cm-variable">$</span>( <span class="cm-variable-2">this</span> ).<span class="cm-property">text</span>() );</pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<p>The code above selects all list items on the page, then binds a 
+handler function to the click event of each list item using jQuery's <code>.click()</code> method.
+
+</p>
+<p>Methods such as <code>.click()</code>, <code>.blur()</code>, <code>.change()</code>, and others are "shorthand"
+methods for event binding. jQuery provides a number of these shorthand methods, each of which corresponds to a native DOM event:
+
+</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Native Event Name</th>
+      <th>Shorthand Method</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>click</td>
+      <td><code>.click()</code></td>
+    </tr>
+    <tr>
+      <td>keydown</td>
+      <td><code>.keydown()</code></td>
+    </tr>
+    <tr>
+      <td>keypress</td>
+      <td><code>.keypress()</code></td>
+    </tr>
+    <tr>
+      <td>keyup</td>
+      <td><code>.keyup()</code></td>
+    </tr>
+    <tr>
+      <td>mouseover</td>
+      <td><code>.mouseover()</code></td>
+    </tr>
+    <tr>
+      <td>mouseout</td>
+      <td><code>.mouseout()</code></td>
+    </tr>
+    <tr>
+      <td>mouseenter</td>
+      <td><code>.mouseenter()</code></td>
+    </tr>
+    <tr>
+      <td>mouseleave</td>
+      <td><code>.mouseleave()</code></td>
+    </tr>
+    <tr>
+      <td>scroll</td>
+      <td><code>.scroll()</code></td>
+    </tr>
+    <tr>
+      <td>focus</td>
+      <td><code>.focus()</code></td>
+    </tr>
+    <tr>
+      <td>blur</td>
+      <td><code>.blur()</code></td>
+    </tr>
+    <tr>
+      <td>resize</td>
+      <td><code>.resize()</code></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p>Under the hood, all of the shorthand methods make use of jQuery's <code>.on()</code> method. You can use the <code>.on()</code> method in your own code; indeed, doing so gives you a lot more flexibility. When you use the <code>.on()</code> method, you pass the native event name as the first argument, and then the handler function as the second argument:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03345px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 66.7px;"><div style="position: relative; top: 0px;"><div style="height: 67px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-string">'clicked'</span>, <span class="cm-variable">$</span>( <span class="cm-variable-2">this</span> ).<span class="cm-property">text</span>() );</pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<p>Once you've "bound" an event handler to an element, you can trigger that event
+handler using jQuery as well.
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 29px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">trigger</span>( <span class="cm-string">'click'</span> );</pre></div></div></div></div></div></div></div></div>
+<p>If the event you want to trigger has a shorthand method (see the 
+table above), you can also trigger the event by simply calling the 
+shorthand method:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 29px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">click</span>();</pre></div></div></div></div></div></div></div></div>
+<div class="alert alert-info">
+  When you <code>.trigger()</code> an event, you only trigger event 
+handlers that were bound with JavaScript &#8212; you don't trigger the default
+ behavior of the event. For example, if you trigger the click event of 
+an <code>a</code> element, it will not automatically navigate to the <code>href</code> of that element (though you could write code that would make it do so).
+</div>
+
+<p>Once you have bound an event, you can unbind the event using jQuery's <code>.off()</code> method. This will remove any event handlers that were bound to the specified event:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03345px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 29px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">off</span>( <span class="cm-string">'click'</span> );</pre></div></div></div></div></div></div></div></div>
+<h2>Namespaced events</h2>
+<p>One advantage that <code>.on()</code> offers is the ability to use "namespaced" events.
+When would you want to use namespaces? Consider a situation where you bind some events, and then want to <em>unbind</em> some of the handlers. As we just saw, you could do it this way:
+
+</p>
+<div class="editor-info"><span class="caution">caution</span> antipattern</div><div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03333px; left: 32.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 199px;"><div style="position: relative; top: 0px;"><div style="height: 199px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre><pre>7</pre><pre>8</pre><pre>9</pre><pre>10</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 27px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-string">'a list item was clicked'</span> );</pre><pre>});</pre><pre> </pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">registerClick</span>();</pre><pre>  <span class="cm-variable">doSomethingElse</span>();</pre><pre>});</pre><pre> </pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">off</span>( <span class="cm-string">'click'</span> );</pre></div></div></div></div></div></div></div></div>
+<p>However, this will unbind <em>all</em> click handlers on all <code>li</code> elements, which isn't what we want. If you bind an event handler using a <em>namespaced event</em>, you can target that event handler specifically:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.0332px; left: 32.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 199px;"><div style="position: relative; top: 0px;"><div style="height: 199px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre><pre>7</pre><pre>8</pre><pre>9</pre><pre>10</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 27px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click.logging'</span>, <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-string">'a list item was clicked'</span> );</pre><pre>});</pre><pre> </pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click.analytics'</span>, <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">registerClick</span>();</pre><pre>  <span class="cm-variable">doSomethingElse</span>();</pre><pre>});</pre><pre> </pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">off</span>( <span class="cm-string">'click.logging'</span> );</pre></div></div></div></div></div></div></div></div>
+<p>This code leaves our analytics-related click untouched, while unbinding our logging-related click.
+
+</p>
+<p>We can also use namespaces to trigger only certain events:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.0332px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 28.9px;"><div style="position: relative; top: 0px;"><div style="height: 29px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">trigger</span>( <span class="cm-string">'click.logging'</span> );</pre></div></div></div></div></div></div></div></div>
+<h2>Binding multiple events at once</h2>
+<p>Another benefit of using <code>.on()</code> is the ability to bind to multiple events at
+once. For example, you might want to run the same code when a user scrolls the
+window or when a user resizes the window. The <code>.on()</code> method lets you pass both
+events &#8212; in a space-separated string &#8212; followed by the function that you want
+to handle both events:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03345px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 142.3px;"><div style="position: relative; top: 0px;"><div style="height: 142px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre><pre>7</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'input[type="text"]'</span> ).<span class="cm-property">on</span>(<span class="cm-string">'focus blur'</span>, <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-string">'The user focused or blurred the input'</span> );</pre><pre>});</pre><pre> </pre><pre><span class="cm-variable">$</span>( <span class="cm-variable">window</span> ).<span class="cm-property">on</span>( <span class="cm-string">'resize.foo scroll.bar'</span>, <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-string">'The window has been resized or scrolled!'</span> );</pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<h2>Passing named functions as event handlers</h2>
+<p>In all of our examples up until now, we've been passing anonymous 
+functions as event handlers. However, you can create a function ahead of
+ time and store it in a variable, then pass that variable as the event 
+handler. This is useful if you want to use the same handler for 
+different events or events on different elements.
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.0332px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 123.4px;"><div style="position: relative; top: 0px;"><div style="height: 123px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-keyword">var</span> <span class="cm-variable">handleClick</span> = <span class="cm-keyword">function</span>() {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-string">'something was clicked'</span> );</pre><pre>};</pre><pre> </pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'li'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-variable">handleClick</span> );</pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'h1'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-variable">handleClick</span> );</pre></div></div></div></div></div></div></div></div>
+<h2>The event object</h2>
+<p>Whenever an event is triggered, the event handler function receives one
+argument, an event object that is normalized across browsers. This object has
+many <a href="http://api.jquery.com/category/events/event-object/">useful properties</a>,
+including the following:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03345px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 142.3px;"><div style="position: relative; top: 0px;"><div style="height: 142px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre><pre>7</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-variable">document</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">event</span>.<span class="cm-property">type</span> );    <span class="cm-comment">// The event type, eg. "click"</span></pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">event</span>.<span class="cm-property">which</span> );   <span class="cm-comment">// The button or key that was pressed.</span></pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">event</span>.<span class="cm-property">target</span> );  <span class="cm-comment">// The originating element.</span></pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">event</span>.<span class="cm-property">pageX</span> );   <span class="cm-comment">// The document mouse X coordinate.</span></pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">event</span>.<span class="cm-property">pageY</span> );   <span class="cm-comment">// The document mouse Y coordinate.</span></pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<h2>Inside the event handler</h2>
+<p>When you specify a function to be used as an event handler, that function gets
+access to the <em>raw DOM element</em> that initiated the event as <code>this</code>. If you want
+to use jQuery to mainpulate the element, you will need to pass it to <code>$()</code>:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03345px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 161.2px;"><div style="position: relative; top: 0px;"><div style="height: 161px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre><pre>7</pre><pre>8</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'input'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'keydown'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-comment">// this: The element on which the event handler was bound.</span></pre><pre>  <span class="cm-comment">// event: The event object.</span></pre><pre> </pre><pre>  <span class="cm-comment">// Change the input element's background to red if backspace was</span></pre><pre>  <span class="cm-comment">// pressed, otherwise green.</span></pre><pre>  <span class="cm-variable">$</span>( <span class="cm-variable-2">this</span> ).<span class="cm-property">css</span>( <span class="cm-string">'background'</span>, <span class="cm-variable-2">event</span>.<span class="cm-property">which</span> === <span class="cm-number">8</span> ? <span class="cm-string">'red'</span> : <span class="cm-string">'green'</span> );</pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<h2>Preventing the default action</h2>
+<p>Often, you'll want to prevent the default action of an event; for example, you
+may want to handle a click on an <code>a</code> element using AJAX, rather than triggering
+a full page reload. Many developers achieve this by having the event handler
+return <code>false</code>, but this actually has another side effect: it stops the
+<em>propagation</em> of the event as well, which can have unintended consequences.
+The right way to prevent the default behavior of an event is to call the
+<code>.preventDefault()</code> method of the event object.
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03345px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 123.4px;"><div style="position: relative; top: 0px;"><div style="height: 123px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre><pre>6</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'a'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-comment">// Prevent the default action.</span></pre><pre>  <span class="cm-variable-2">event</span>.<span class="cm-property">preventDefault</span>();</pre><pre>  <span class="cm-comment">// Log stuff.</span></pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-string">'I was just clicked!'</span> );</pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<p>This will allow the event to "bubble," which we'll explore below.
+
+</p>
+<h2>Event bubbling</h2>
+<p>Consider the following code:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.0332px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 85.6px;"><div style="position: relative; top: 0px;"><div style="height: 86px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'*'</span> ).<span class="cm-property">add</span>( [ <span class="cm-variable">document</span>, <span class="cm-variable">window</span> ] ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-variable-2">event</span>.<span class="cm-property">preventDefault</span>();</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">this</span> );</pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<p>It binds a click handler to all elements in a document (something you should
+<em>never</em> do in real code), as well as to the <code>document</code> and <code>window</code>. What
+happens when you click on an <code>a</code> element that's nested inside other elements?
+In fact, the click event will be triggered for the <code>a</code> element as well as for
+all of the elements that contain the <code>a</code> &#8212; all the way up to the <code>document</code>
+and the <code>window</code>. (You can click on the <i class="icon-eye-open"></i> icon to
+try it in the sandbox yourself.)
+
+</p>
+<p>This behavior is called event bubbling &#8212; the event is triggered on the element
+on which the user clicked, and &#8212; unless you call <code>.stopPropagation()</code> on the
+event object &#8212; the event is then triggered all the way up the DOM.
+
+</p>
+<p>You can see this more clearly when you consider the following markup:
+
+</p>
+<div class="editor-container"><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.0332px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 47.8px;"><div style="position: relative; top: 0px;"><div style="height: 48px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-tag">&lt;a</span> <span class="cm-attribute">href</span>=<span class="cm-string">"#foo"</span><span class="cm-tag">&gt;&lt;span&gt;</span>I am a Link!<span class="cm-tag">&lt;/span&gt;&lt;/a&gt;</span></pre><pre><span class="cm-tag">&lt;a</span> <span class="cm-attribute">href</span>=<span class="cm-string">"#bar"</span><span class="cm-tag">&gt;&lt;b&gt;&lt;i&gt;</span>I am another Link!<span class="cm-tag">&lt;/i&gt;&lt;/b&gt;&lt;/a&gt;</span></pre></div></div></div></div></div></div></div></div>
+<p>And the following code:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.0332px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 85.6px;"><div style="position: relative; top: 0px;"><div style="height: 86px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'a'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-variable-2">event</span>.<span class="cm-property">preventDefault</span>();</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable">$</span>( <span class="cm-variable-2">this</span> ).<span class="cm-property">attr</span>( <span class="cm-string">'href'</span> ) );</pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<p>When you click on "I am a Link!", you are not actually clicking on an <code>a</code>, but
+rather on a <code>span</code> inside of an <code>a</code>. Nevertheless, the click event bubbles up
+to the <code>a</code>, and the bound click handler fires.
+
+</p>
+<h2>Event delegation</h2>
+<p>The bubbling behavior of events allows us to do "event delegation" &#8212; binding
+handlers to high-level elements, and then detecting which low-level element
+initiated the event. For example, we could bind an event to an unordered list,
+and then determine which element initiated the event:
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.0332px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 66.7px;"><div style="position: relative; top: 0px;"><div style="height: 67px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'#my-unordered-list'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">event</span>.<span class="cm-property">target</span> ); <span class="cm-comment">// logs the element that initiated the event</span></pre><pre>});</pre></div></div></div></div></div></div></div></div>
+<p>Of course, if our unordered list contains list items that contain other markup,
+but we really only care about which list item was clicked, then this can get
+messy in a hurry. Thankfully, jQuery provides a helper that lets us specify
+which elements we care about, while still only binding to the high-level
+element.
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03369px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 104.5px;"><div style="position: relative; top: 0px;"><div style="height: 105px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'#my-unordered-list'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-string">'li'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">this</span> ); <span class="cm-comment">// logs the list item that was clicked</span></pre><pre>});</pre><pre> </pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'&lt;li&gt;a new list item!&lt;/li&gt;'</span> ).<span class="cm-property">appendTo</span>( <span class="cm-string">'#my-unordered-list'</span> );</pre></div></div></div></div></div></div></div></div>
+<p>Event delegation has two main benefits. First, it allows us to bind fewer event
+handlers than we'd have to bind if we were listening to clicks on individual
+elements, which can be a big performance gain. Second, it allows us to bind to
+parent elements &#8212; such as an unordered list &#8212; and know that our event
+handlers will fire as expected <em>even if the contents of that parent element
+change</em>.
+
+</p>
+<p>For example, this code adds a new list item after the event delegation is set
+up; clicking on the new item works just fine, without any additional event
+binding code.
+
+</p>
+<div class="editor-container"><div class="editor-buttons"><i title="Try in editor" class="icon-eye-open"></i></div><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.03369px; left: 31.0333px;"><textarea style="position: absolute; padding: 0; width: 1px; height: 1em" wrap="off" autocorrect="off" autocapitalize="off"></textarea></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative; height: 104.5px;"><div style="position: relative; top: 0px;"><div style="height: 105px;" class="CodeMirror-gutter"><div class="CodeMirror-gutter-text"><pre>1</pre><pre>2</pre><pre>3</pre><pre>4</pre><pre>5</pre></div></div><div class="CodeMirror-lines"><div draggable="true" style="position: relative; z-index: 0; outline: medium none; margin-left: 26px;"><div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden;"></div><pre style="top: 0px; left: 0px;" class="CodeMirror-cursor">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-variable">$</span>( <span class="cm-string">'#my-unordered-list'</span> ).<span class="cm-property">on</span>( <span class="cm-string">'click'</span>, <span class="cm-string">'li'</span>, <span class="cm-keyword">function</span>( <span class="cm-def">event</span> ) {</pre><pre>  <span class="cm-variable">console</span>.<span class="cm-property">log</span>( <span class="cm-variable-2">this</span> ); <span class="cm-comment">// logs the list item that was clicked</span></pre><pre>});</pre><pre> </pre><pre><span class="cm-variable">$</span>( <span class="cm-string">'&lt;li&gt;a new list item!&lt;/li&gt;'</span> ).<span class="cm-property">appendTo</span>( <span class="cm-string">'#my-unordered-list'</span> );</pre></div></div></div></div></div></div></div></div>
+<h2>Conclusion</h2>
+<p>In this section, we took a look at various ways to listen for user interaction
+with our page, including how we can use event delegation to more efficiently
+set up event handlers. In the next section, we'll look at how we can animate
+elements using jQuery's effects methods.
+</p>
+<ul class="pager"><li class="previous"><a href="http://jqfundamentals.com/chapter/traversing-manipulating">&#8592;&nbsp;Previous:&nbsp;Traversing &amp; Manipulating</a></li><li class="next"><a href="http://jqfundamentals.com/chapter/effects">Next:&nbsp;Effects&nbsp;&#8594;</a></li></ul></div></div></div><footer><p>Copyright © 2012 <a href="http://bocoup.com/">Bocoup</a> &#8226; <a href="http://jqfundamentals.com/legacy">View the original book</a> &#8226; <a href="mailto:jqf@bocoup.com">Send feedback</a></p></footer></div><script src="events_files/require.js" data-main="/public/v1348938024379/main"></script><script>require([ 'js/chapter' ]);
+</script><script>var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-1464992-55']); _gaq.push(['_trackPageview']);
+
+(function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script></body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bocoup jQuery Training :: Sum Table Rows</title>
+  <link rel="stylesheet" href="../../assets/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/bocoup.css">
+  <style type="text/css">
+  td.sum {
+    color: #468847;
+    background-color: #dff0d8 !important;
+    font-weight: 700;
+  }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="http://training.bocoup.com/">Bocoup jQuery Training :: Sum Table Rows</a>
+        <div>
+          <ul class="nav">
+            <li class="active"><a href="../../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="main">
+    <h1>Each table column needs a &ldquo;sum&rdquo; row. <small>(exercise)</small></h1><br>
+    <div class="well">
+      <h4>Modify <code>exercise.js</code> to make the <a href="exercise.html">exercise page</a> look like the <a href="solution.html">solution page</a>.</h4><br>
+      <ul>
+        <li>Iterate over every table (as well as table row and table cell).</li>
+        <li>Store table cell sums in an array, indexed by the table cell's index.</li>
+        <li>Create an additional row at the end of each table containing the sums.</li>
+        <li>Give each sum cell a distinctive style, so it stands out from the other cells.</li>
+      </ul>
+      <p>If you need help, use the <a href="http://api.jquery.com/">jQuery API documentation</a>, <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference">MDN JavaScript Reference</a> and the browser's <a href="https://developers.google.com/chrome-developer-tools/docs/overview">developer tools</a>!</p>
+    </div>
+    <div id="content">
+      <h2>A table</h2>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>Another table</h2>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="../../assets/lib/jquery/jquery.js"></script>
+  <script src="exercise.js"></script>
+</body>

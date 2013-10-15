@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bocoup jQuery Training :: Sort Listitems</title>
+  <link rel="stylesheet" href="../../assets/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/bocoup.css">
+  <style type="text/css">
+  #content li {
+    font-family: monospace;
+  }
+  .hover {
+    color: #468847;
+    background-color: #dff0d8 !important;
+  }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="http://training.bocoup.com/">Bocoup jQuery Training :: Sort Listitems</a>
+        <div>
+          <ul class="nav">
+            <li class="active"><a href="../../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="main">
+    <h1>These lists need to be sorted. <small>(solution)</small></h1><br>
+    <div class="well">
+      <h4>Modify <code>exercise.js</code> to make the <a href="exercise.html">exercise page</a> look like the <a href="solution.html">solution page</a>.</h4><br>
+      <ul>
+        <li>Iterate over every list.</li>
+        <li>Get that list's listitems as an array of DOM elements, using the jQuery <code>.get()</code> method.</li>
+        <li>Sort the array, using the JavaScript Array <code>.sort(compareFunction)</code> method.</li>
+        <li>Append elements to the list to reflect the new sort order.</li>
+        <li>Take care not to unbind any bound event handlers.</li>
+      </ul>
+      <p>If you need help, use the <a href="http://api.jquery.com/">jQuery API documentation</a>, <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference">MDN JavaScript Reference</a> and the browser's <a href="https://developers.google.com/chrome-developer-tools/docs/overview">developer tools</a>!</p>
+    </div>
+    <div id="content">
+      <h2>An unordered list</h2>
+      <ul>
+        <li>List 1, Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>List 1, Aliquam et <em>erat</em> neque, <strong>sit</strong> amet aliquet tortor.</li>
+        <li>List 1, Duis auctor magna et <a href="#arbitrary-href">risus pulvinar</a> tincidunt.</li>
+        <li>List 1, Suspendisse scelerisque dapibus ante, eu adipiscing magna convallis sit amet.</li>
+        <li>List 1, Duis eget ligula et ante porttitor sollicitudin.</li>
+      </ul>
+      <h2>An ordered list</h2>
+      <ol>
+        <li>List 2, Proin lacinia nisi quis purus condimentum et fermentum mi pulvinar.</li>
+        <li>List 2, Sed molestie malesuada leo, et placerat nisi dignissim in.</li>
+        <li>List 2, In nec lorem a <a href="#arbitrary-href">lectus</a> auctor hendrerit.</li>
+        <li>List 2, Quisque eleifend dolor eget mauris tincidunt auctor interdum mi varius.</li>
+        <li>List 2, Duis sit <strong>amet</strong> nisl sit amet libero imperdiet pulvinar.</li>
+        <li>List 2, Mauris suscipit sapien sed justo dignissim nec elementum ligula porttitor.</li>
+        <li>List 2, Suspendisse sit amet metus sit amet orci ultricies imperdiet eget lacinia mauris.</li>
+        <li>List 2, Ut sit amet elit ut nunc elementum <em>placerat</em>.</li>
+      </ol>
+      <h2>Another unordered list</h2>
+      <ul>
+        <li>List 3, Ut feugiat ultricies sapien, in consectetur mi <em>eleifend</em> vel.</li>
+        <li>List 3, Maecenas sagittis mattis nibh, et eleifend erat hendrerit id.</li>
+        <li>List 3, Curabitur in <strong>odio</strong> eu arcu volutpat <em>lobortis</em> eget ut erat.</li>
+        <li>List 3, Sed hendrerit cursus est, eget porta urna adipiscing eget.</li>
+        <li>List 3, Mauris eget libero eros, id <a href="#arbitrary-href">fermentum</a> nulla.</li>
+      </ul>
+    </div>
+  </div>
+  <script src="../../assets/lib/jquery/jquery.js"></script>
+  <script src="solution.js"></script>
+</body>

@@ -1,0 +1,19 @@
+{
+  "people": [
+    {
+      "name": "Ben Alman",
+      "url": "http://benalman.com/",
+      "bio": "I'm a senior developer at @bocoup, creator of @gruntjs, and frequent contributor to @jquery. I also coined the term IIFE and play a mean funk bass."
+    },
+    {
+      "name": "Rebecca Murphey",
+      "url": "http://rmurphey.com",
+      "bio": "Senior JS dev at Bocoup"
+    },
+    {
+      "name": "Jory Burson",
+      "url": "http://joryburson.com",
+      "bio": "Enthusiastic about Open Web education at @bocoup. Lover of media, owls, fake mustaches, & you."
+    }
+  ]
+}
